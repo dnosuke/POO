@@ -26,6 +26,7 @@ public class Locadora {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Locadora e=new Locadora();
 		
+		//DADOS INICIAIS PARA TESTE
 		Funcionario maria= new Funcionario("Maria", "1234-12", 1, 1000.0);
 		e.funcionario.add(maria);
 		Funcionario jean= new Funcionario("Jean", "4567-32", 2, 1000.0);
@@ -34,6 +35,7 @@ public class Locadora {
 		e.adicionaVeiculo(teste);
 		Cliente testeC = new Cliente("Joao", "12234-34", "1234-0988");
 		 e.adicionaCliente(testeC);
+		//FIM 
 		
 				Veiculo v1;
 				Cliente c;
@@ -46,7 +48,7 @@ public class Locadora {
 							+ "1- Cadastrar Veiculo.\n"
 							+ "2- Cadastrar Cliente.\n"
 							+ "3- Cadastrar Locacao.\n"
-							+ "4- Cadastrar Devolução .\n"
+							+ "4- Cadastrar DevoluÃ§Ã£o .\n"
 							+ "5- Efetuar Pagamento.\n"
 							+ "6- Listas de cadastro."
 							);
@@ -120,16 +122,16 @@ public class Locadora {
 							Date data =Date.valueOf(dataS);
 							LocalDate dat = data.toLocalDate();
 							dat.format(formatador);
-							System.out.print("N° do Cliente: ");
+							System.out.print("NÂ° do Cliente: ");
 							int n_cli = in.nextInt();
 							Cliente C = e.cliente.get(n_cli);
 							verificarCliente(e,n_cli, dat, C);
 							if(C.isRestricao() == false) {
-							System.out.print("N° Funcionario: ");
+							System.out.print("NÂ° Funcionario: ");
 							int n_fun = in.nextInt();
 							Funcionario F = e.funcionario.get(n_fun);
 							
-							System.out.print("N° Veiculo: ");
+							System.out.print("NÂ° Veiculo: ");
 							int n_vei = in.nextInt();
 							Veiculo V = e.veiculo.get(n_vei);
 							System.out.print("Quantidade de dias: ");
@@ -140,17 +142,17 @@ public class Locadora {
 							 e.RelatorioLocacao();
 							System.out.println("=====================================================");
 							}else {
-								System.out.println("Cliente possui restrição para Locações.\n");
+								System.out.println("Cliente possui restriÃ§Ã£o para LocaÃ§Ãµes.\n");
 							}
 							break;
 						
 						case 4:
-							System.out.println("================Cadastrar Devolução==================");
+							System.out.println("================Cadastrar DevoluÃ§Ã£o==================");
 							System.out.print("Data: yyyy-mm-dd");
 							String dataD = in.next();
 							Date data2 =Date.valueOf(dataD);
 							LocalDate dataDev = data2.toLocalDate();
-							System.out.print("N° da Locacao: ");
+							System.out.print("NÂ° da Locacao: ");
 							int n_loc = in.nextInt();
 							Locacao L = e.locacao.get(n_loc);
 							
@@ -162,7 +164,7 @@ public class Locadora {
 							
 						case 5:
 							System.out.println("================Efetuar Pagamento==================");
-							System.out.print("N° do Pagamento: ");
+							System.out.print("NÂ° do Pagamento: ");
 							int n_pag = in.nextInt();
 							Pagamento P = e.pagamento.get(n_pag);
 							System.out.println("Efetuar pagamento? (s/n)");
@@ -180,7 +182,7 @@ public class Locadora {
 									+ "1- Mostrar Clientes.\n"
 									+ "2- Mostrar Veiculos.\n"
 									+ "3- Mostrar Funcionarios.\n"
-									+ "4- Mostrar Locações.\n"
+									+ "4- Mostrar LocaÃ§Ãµes.\n"
 									+ "5- Mostrar Pagamentos."
 									);
 							System.out.println("==================================");
@@ -209,7 +211,7 @@ public class Locadora {
 									break;
 								case 4:
 									if(e.cliente.isEmpty()) {
-										System.out.println("Nenhum locação cadastrada.\n");
+										System.out.println("Nenhum locaÃ§Ã£o cadastrada.\n");
 									}else {
 										e.RelatorioLocacao();
 									}
@@ -222,7 +224,7 @@ public class Locadora {
 									}
 									break;
 								default:
-									System.out.println("Escolha inválida.\n");
+									System.out.println("Escolha invÃ¡lida.\n");
 							}//FIM DO SWITCH RELATORIO
 							break;
 					}//FIM DO SWITCH OP		
@@ -272,7 +274,7 @@ public class Locadora {
 						System.out.println(pagamento.get(i));
 					}
 		}	
-				//verifica se o cliente ja possui locaçoes cadastradas, locações diferentes de um mesmo cliente so podem ser feitas na mesma data
+				//verifica se o cliente ja possui locaÃ§oes cadastradas, locaÃ§Ãµes diferentes de um mesmo cliente so podem ser feitas na mesma data
 				static void verificarCliente(Locadora e,int numero,LocalDate dataS,Cliente cliente) {	
 					
 					Locacao loca = null;
@@ -282,13 +284,13 @@ public class Locadora {
 							if(cliente.equals(loca.getCliente()))  
 								if(dataS.isAfter(loca.getDataSaida())) {
 									cliente.setRestricao(true);
-									System.out.println("----Cliente "+cliente.getNome()+" está pendente.----\n");
+									System.out.println("----Cliente "+cliente.getNome()+" estÃ¡ pendente.----\n");
 									break;
 									}else {	
 										cliente.setRestricao(false);
-										System.out.println("----Cliente "+cliente.getNome() +" nao possui pendências.----\n");
+										System.out.println("----Cliente "+cliente.getNome() +" nao possui pendÃªncias.----\n");
 										break;
 									}//FIM DO ELSE			
 					}//FIM DO FOR
-					}//FIM DA FUNÇÃO
+					}//FIM DA FUNÃ‡ÃƒO
 }//FIM LOCADORA
